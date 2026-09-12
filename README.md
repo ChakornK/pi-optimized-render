@@ -30,11 +30,11 @@ Use `pi --no-render-optimization` to start disabled with the extension loaded. P
 ## Behavior and limits
 
 - Reversible instance hooks preserve Pi's editor, footer, widgets, and terminal behavior. Installed Pi files and global prototypes remain untouched.
-- Unknown custom components stay live. Their authors can use the [generic cache contract](docs/architecture.md#custom-cache-controls); the optimizer has no plugin-specific adapters.
+- Unknown custom components stay live. Their authors can use the [generic cache contract](https://github.com/ChakornK/pi-optimized-render/blob/main/docs/architecture.md#custom-cache-controls); the optimizer has no plugin-specific adapters.
 - Cold rendering, resizing, full invalidation, active-message Markdown, and search can scale with history. Cache memory grows with the transcript.
 - Code that mutates old array aliases or cached inputs in place must call `invalidate()`. Use `/render-opt clear` for stale output.
 
-See [architecture](docs/architecture.md) for cache guards.
+See [architecture](https://github.com/ChakornK/pi-optimized-render/blob/main/docs/architecture.md) for cache guards.
 
 ## Benchmarks
 
@@ -51,7 +51,7 @@ Recorded medians on Linux, Node.js 26.8.1, Pi 0.85.1: 5,000 completed messages (
 
 These are frame CPU times using native Pi components and a counting output sink. They exclude terminal display latency, model throughput, and custom renderer costs.
 
-Cold frames were slower with optimization: **5.49 → 8.27 seconds** in regular mode and **4.49 → 7.65 seconds** in fullscreen mode. See [benchmark methods](docs/performance.md) for reproduction and limits.
+Cold frames were slower with optimization: **5.49 → 8.27 seconds** in regular mode and **4.49 → 7.65 seconds** in fullscreen mode. See [benchmark methods](https://github.com/ChakornK/pi-optimized-render/blob/main/docs/performance.md) for reproduction and limits.
 
 ## Development
 
@@ -60,6 +60,6 @@ npm ci --ignore-scripts
 npm run verify
 ```
 
-Verification requires Python 3 and Unix pseudo-terminals. See [CONTRIBUTING.md](CONTRIBUTING.md).
+Verification requires Python 3 and Unix pseudo-terminals. See [CONTRIBUTING.md](https://github.com/ChakornK/pi-optimized-render/blob/main/CONTRIBUTING.md).
 
 [MIT license](LICENSE)

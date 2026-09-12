@@ -15,10 +15,8 @@
   ],
   "files": [
     "src",
-    "docs",
     "README.md",
-    "LICENSE",
-    "CONTRIBUTING.md"
+    "LICENSE"
   ],
   "pi": {
     "extensions": [

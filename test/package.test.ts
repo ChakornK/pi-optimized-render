@@ -80,6 +80,23 @@ test("package gate rejects raw benchmark results", () => {
   }, /Unexpected release file: bench\/results\.json/);
 });
 
+for (const path of ["CONTRIBUTING.md", "docs"]) {
+  test(`package gate rejects repository-only documentation: ${path}`, () => {
+    rejectedPackage((directory) => {
+      const file = join(directory, "package.json");
+      const manifest = JSON.parse(readFileSync(file, "utf8"));
+      manifest.files.push(path);
+      writeFileSync(file, JSON.stringify(manifest));
+    }, /Unexpected release file: (?:CONTRIBUTING\.md|docs\/)/);
+  });
+}
+
+test("package gate rejects unused source files", () => {
+  rejectedPackage((directory) => {
+    writeFileSync(join(directory, "src/development.ts"), "export const unused = true;\n");
+  }, /Unexpected release file: src\/development\.ts/);
+});
+
 test("package gate rejects a broken documentation link", () => {
   rejectedPackage((directory) => {
     appendFileSync(join(directory, "README.md"), "\n[Missing guide](missing.md)\n");

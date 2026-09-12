@@ -36,9 +36,6 @@ const required = new Set([
   "package.json",
   "README.md",
   "LICENSE",
-  "CONTRIBUTING.md",
-  "docs/architecture.md",
-  "docs/performance.md",
   "src/index.ts",
   "src/renderer.ts",
   "src/tree.ts",
@@ -87,12 +84,7 @@ try {
   const files = new Set(archive.files.map((file) => file.path));
   for (const file of required) assert.ok(files.has(file), `Missing release file: ${file}`);
   for (const file of files) {
-    assert.ok(
-      required.has(file) ||
-        /^src\/[a-zA-Z0-9_/-]+\.ts$/.test(file) ||
-        /^docs\/[a-zA-Z0-9_/-]+\.md$/.test(file),
-      `Unexpected release file: ${file}`,
-    );
+    assert.ok(required.has(file), `Unexpected release file: ${file}`);
   }
 
   run("tar", ["-xzf", join(temporary, archive.filename), "-C", temporary]);
