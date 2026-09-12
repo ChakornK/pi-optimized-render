@@ -18,8 +18,7 @@
     "docs",
     "README.md",
     "LICENSE",
-    "CONTRIBUTING.md",
-    "bench/results.json"
+    "CONTRIBUTING.md"
   ],
   "pi": {
     "extensions": [
@@ -34,8 +33,8 @@
     "check": "tsc --noEmit && npm run format:check",
     "verify": "npm run check && npm test && npm run test:package",
     "prepublishOnly": "npm run verify",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"bench/**/*.ts\" \"scripts/**/*.mjs\" \"*.md\" \"docs/**/*.md\" \".github/workflows/*.yml\" \"*.json\" \"bench/*.json\"",
-    "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\" \"bench/**/*.ts\" \"scripts/**/*.mjs\" \"*.md\" \"docs/**/*.md\" \".github/workflows/*.yml\" \"*.json\" \"bench/*.json\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"bench/**/*.ts\" \"scripts/**/*.mjs\" \"*.md\" \"docs/**/*.md\" \".github/workflows/*.yml\" \"*.json\"",
+    "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\" \"bench/**/*.ts\" \"scripts/**/*.mjs\" \"*.md\" \"docs/**/*.md\" \".github/workflows/*.yml\" \"*.json\"",
     "bench": "tsx bench/render.ts"
   },
   "engines": {

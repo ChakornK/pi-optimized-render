@@ -34,7 +34,24 @@ Use `pi --no-render-optimization` to start disabled with the extension loaded. P
 - Cold rendering, resizing, full invalidation, active-message Markdown, and search can scale with history. Cache memory grows with the transcript.
 - Code that mutates old array aliases or cached inputs in place must call `invalidate()`. Use `/render-opt clear` for stale output.
 
-See [architecture](docs/architecture.md) for cache guards and [benchmarks](docs/performance.md) for CPU measurements and cold-render costs. Native-component benchmarks exclude custom renderer costs and terminal display latency.
+See [architecture](docs/architecture.md) for cache guards.
+
+## Benchmarks
+
+Recorded medians on Linux, Node.js 26.8.1, Pi 0.85.1: 5,000 completed messages (about 46,000 lines), a 100 × 36 terminal, and 80 frames per workload after warmup.
+
+| Mode       | Workload       |    Native | Optimized |
+| ---------- | -------------- | --------: | --------: |
+| Regular    | Typing         | 190.26 ms |   0.63 ms |
+| Regular    | Streaming      | 192.67 ms |   3.16 ms |
+| Regular    | Status updates | 190.95 ms |   0.84 ms |
+| Fullscreen | Typing         |  48.93 ms |   0.87 ms |
+| Fullscreen | Streaming      |  50.16 ms |   5.52 ms |
+| Fullscreen | Status updates |  38.53 ms |   1.25 ms |
+
+These are frame CPU times using native Pi components and a counting output sink. They exclude terminal display latency, model throughput, and custom renderer costs.
+
+Cold frames were slower with optimization: **5.49 → 8.27 seconds** in regular mode and **4.49 → 7.65 seconds** in fullscreen mode. See [benchmark methods](docs/performance.md) for reproduction and limits.
 
 ## Development
 

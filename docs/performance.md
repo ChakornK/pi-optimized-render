@@ -1,35 +1,26 @@
-# Performance
+# Benchmark methods
 
-CPU timings use a counting output sink and exclude terminal display latency and model throughput. The fixture covers native Pi components, not custom renderers.
+See [recorded results](../README.md#benchmarks) for timings and cold-render costs.
 
-## Recorded results
+## Workload
 
-Linux, Node.js 26.8.1, Pi 0.85.1; 100 columns × 36 rows; 5,000 completed messages, about 46,000 lines. The fixture includes native messages, Markdown, read-tool rows, input, and footer. Each workload measures 80 frames after warmup; streaming includes active-message Markdown processing.
+The fixture uses native Pi messages, Markdown, read-tool rows, input, and footer. Frame CPU timings use a counting output sink and exclude terminal display latency and model throughput. Streaming includes active-message Markdown processing.
 
-| Mode       | Workload       | Native median | Optimized median |
-| ---------- | -------------- | ------------: | ---------------: |
-| Regular    | Typing         |     190.26 ms |          0.63 ms |
-| Regular    | Streaming      |     192.67 ms |          3.16 ms |
-| Regular    | Status updates |     190.95 ms |          0.84 ms |
-| Fullscreen | Typing         |      48.93 ms |          0.87 ms |
-| Fullscreen | Streaming      |      50.16 ms |          5.52 ms |
-| Fullscreen | Status updates |      38.53 ms |          1.25 ms |
-
-Optimized regular typing rendered one live component and processed 36 lines per frame. Status updates avoided session-entry scans.
-
-Cold regular rendering took **8.27 seconds optimized versus 5.49 seconds native**. This includes attachment and initial rendering, excluding fixture construction and session loading. Resizes and full invalidations process history.
+Cold measurements include optimizer attachment and initial rendering, excluding fixture construction and session loading. Resizes and full invalidations process history.
 
 ## Reproduce
 
 ```sh
 npm ci --ignore-scripts
-npm run bench -- --sizes=5000 --frames=80 --mode=both
+npm run --silent bench -- --sizes=5000 --frames=80 --mode=both --json > results.json
 ```
 
-Use `--sizes=100,1000,5000` for scaling and `--json` for structured results, including p95 and work counts. See [recorded data](../bench/results.json).
+Use `--sizes=100,1000,5000` for scaling. JSON output includes medians, p95, and work counts; omit `--json` and the redirect for a terminal summary.
+
+Keep raw results local. `results.json` and `bench/*.json` are ignored and must not be committed or packaged. Put reviewed benchmark summaries in the README.
 
 ## Live sessions
 
 Unknown custom components retain their render costs. Cache work inside the component or follow the [generic invalidation contract](architecture.md#custom-cache-controls).
 
-After updates, run `/reload` and check `/render-opt` for the loaded version, frame CPU, line counts, and live components. Profile the affected session if lag remains; keep cold rendering, active Markdown, and terminal latency separate from unchanged-history costs.
+After updates, run `/reload` and check `/render-opt` for the loaded version, frame CPU, line counts, and live components. Profile the affected session if lag remains; separate cold rendering, active Markdown, and terminal latency from unchanged-history costs.

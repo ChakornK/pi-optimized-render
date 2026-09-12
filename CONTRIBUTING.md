@@ -30,4 +30,4 @@ Use [benchmarks](docs/performance.md) for scaling. Investigate live lag with the
 
 Keep prose direct. Comments explain current behavior, constraints, and local rationale; preserve useful details and leave good comments alone. Avoid filler, change narratives, decorative dividers, and stale benchmark counts.
 
-Keep chats, raw profiles, credentials, and local configuration out of commits. Use generated fixtures and aggregate measurements.
+Keep chats, raw profiles, credentials, local configuration, and raw benchmark results out of commits. Use generated fixtures for tests and put benchmark summaries in the README. `results.json` and `bench/*.json` stay local and must not enter release archives.

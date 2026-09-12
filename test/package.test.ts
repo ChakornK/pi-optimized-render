@@ -70,6 +70,16 @@ test("package gate rejects a private file in the archive", () => {
   }, /Unexpected release file: private\.session\.jsonl/);
 });
 
+test("package gate rejects raw benchmark results", () => {
+  rejectedPackage((directory) => {
+    const file = join(directory, "package.json");
+    const manifest = JSON.parse(readFileSync(file, "utf8"));
+    manifest.files.push("bench/results.json");
+    writeFileSync(file, JSON.stringify(manifest));
+    writeFileSync(join(directory, "bench/results.json"), '{"fixture":true}\n');
+  }, /Unexpected release file: bench\/results\.json/);
+});
+
 test("package gate rejects a broken documentation link", () => {
   rejectedPackage((directory) => {
     appendFileSync(join(directory, "README.md"), "\n[Missing guide](missing.md)\n");

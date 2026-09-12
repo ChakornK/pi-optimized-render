@@ -45,7 +45,6 @@ const required = new Set([
   "src/lines.ts",
   "src/footer.ts",
   "src/patch.ts",
-  "bench/results.json",
 ]);
 
 function run(command, args, { capture = false, env = process.env } = {}) {

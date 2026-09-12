@@ -1,6 +1,8 @@
 node_modules/
 *.tgz
 coverage/
+results.json
+bench/*.json
 .pi/
 __pycache__/
 *.pyc
