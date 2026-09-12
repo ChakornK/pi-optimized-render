@@ -1,0 +1,14 @@
+node_modules/
+*.tgz
+coverage/
+.pi/
+__pycache__/
+*.pyc
+*.log
+*.jsonl
+*.cpuprofile
+*.heapsnapshot
+.env
+.env.*
+!.env.example
+.DS_Store
