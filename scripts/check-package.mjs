@@ -37,7 +37,6 @@ const required = new Set([
   "README.md",
   "LICENSE",
   "CONTRIBUTING.md",
-  "RELEASING.md",
   "docs/architecture.md",
   "docs/performance.md",
   "src/index.ts",

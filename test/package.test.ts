@@ -25,7 +25,6 @@ function rejectedPackage(
       "README.md",
       "LICENSE",
       "CONTRIBUTING.md",
-      "RELEASING.md",
     ]) {
       cpSync(join(root, file), join(directory, file), { recursive: true });
     }

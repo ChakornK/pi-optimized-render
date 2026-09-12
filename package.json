@@ -19,7 +19,6 @@
     "README.md",
     "LICENSE",
     "CONTRIBUTING.md",
-    "RELEASING.md",
     "bench/results.json"
   ],
   "pi": {

@@ -1,3 +1,5 @@
+> **Disclaimer:** This project was purely vibecoded and will not be maintained.
+
 # pi-optimized-render
 
 Cache unchanged transcript rows and reduce rendering work in long Pi sessions.
@@ -7,7 +9,7 @@ Cache unchanged transcript rows and reduce rendering work in long Pi sessions.
 ## Install
 
 ```sh
-pi install npm:pi-optimized-render
+pi install git:github.com/ChakornK/pi-optimized-render
 ```
 
 After installation or updates, run `/reload` or restart Pi. Check `/render-opt` for **v0.1.0**.
@@ -41,6 +43,6 @@ npm ci --ignore-scripts
 npm run verify
 ```
 
-Verification requires Python 3 and Unix pseudo-terminals. See [CONTRIBUTING.md](CONTRIBUTING.md) and [RELEASING.md](RELEASING.md).
+Verification requires Python 3 and Unix pseudo-terminals. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [MIT license](LICENSE)
