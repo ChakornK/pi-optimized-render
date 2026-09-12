@@ -1,6 +1,6 @@
-> **Disclaimer:** This project was purely vibecoded and will not be maintained.
-
 # pi-optimized-render
+
+> **Disclaimer:** This project was purely vibecoded and will not be maintained.
 
 Cache unchanged transcript rows and reduce rendering work in long Pi sessions.
 
